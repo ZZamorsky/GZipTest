@@ -1,5 +1,8 @@
 ﻿namespace GZipTest
 {
+    /// <summary>
+    /// Define Block achritecture
+    /// </summary>
     public class Block
     {
         public Block()

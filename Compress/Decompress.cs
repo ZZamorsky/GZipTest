@@ -39,6 +39,23 @@ namespace GZipTest
             }
         }
 
+        protected override void Process(int processEventId)
+        {
+            try
+            {
+                while (InputQueue.OutQueue(out Block block) && errorMessage == null)
+                {
+                    var decompressedBlockData = GZipCompress.DecompressByBlocks(block.Bytes);
+                    if (decompressedBlockData == null) throw new OutOfMemoryException();
+                    OutputDictionary.Add(block.Id, decompressedBlockData);
+                }
+                ProcessEvents[processEventId].Set();
+            }
+            catch (Exception e)
+            {
+                errorMessage = e;
+            }
+        }
         protected override void WriteOutputFile()
         {
             try
@@ -50,24 +67,6 @@ namespace GZipTest
                         binaryWriter.Write(data, 0, data.Length);
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                errorMessage = e;
-            }
-        }
-
-        protected override void Process(int processEventId)
-        {
-            try
-            {
-                while (InputQueue.OutQueue(out Block chunk) && errorMessage == null)
-                {
-                    var decompressedChunkData = GZipCompress.DecompressByBlocks(chunk.Bytes);
-                    if (decompressedChunkData == null) throw new OutOfMemoryException();
-                    OutputDictionary.Add(chunk.Id, decompressedChunkData);
-                }
-                ProcessEvents[processEventId].Set();
             }
             catch (Exception e)
             {

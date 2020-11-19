@@ -3,6 +3,7 @@ using System.IO.Compression;
 
 namespace GZipTest
 {
+
     public class GZipCompress
     {
         public static byte[] CompressByBlocks(byte[] data)

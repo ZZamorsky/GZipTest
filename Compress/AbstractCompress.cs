@@ -69,6 +69,10 @@ namespace GZipTest
 
         protected abstract void WriteOutputFile();
 
+        /// <summary>
+        /// Getting number of Cores from System
+        /// </summary>
+        /// <returns></returns>
         private static int CoreCounter()
         {
             int coreCount = 0;

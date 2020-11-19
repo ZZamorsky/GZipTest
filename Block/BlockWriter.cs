@@ -3,6 +3,9 @@ using System.Threading;
 
 namespace GZipTest
 {
+    /// <summary>
+    /// Manage creating of output file from block
+    /// </summary>
     public class BlockWriter
     {
         private readonly object locker = new object();
@@ -10,6 +13,11 @@ namespace GZipTest
         private bool completed = false;
         private int index = 0;
 
+        /// <summary>
+        /// Inserting incoming Block into ConcurrentDictionary 
+        /// </summary>
+        /// <param name="blockId"></param>
+        /// <param name="bytes"></param>
         public void Add(int blockId, byte[] bytes)
         {
             lock (locker)
@@ -19,6 +27,11 @@ namespace GZipTest
             }
         }
 
+        /// <summary>
+        /// Manage outgoing data from ConcurrentDictionary
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public bool GetValueByKey(out byte[] data)
         {
             lock (locker)
@@ -38,6 +51,9 @@ namespace GZipTest
             }
         }
 
+        /// <summary>
+        /// Indicates end of inserting into ConcurrentDictionary
+        /// </summary>
         public void SetCompleted()
         {
             lock (locker)
