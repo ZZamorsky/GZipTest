@@ -5,6 +5,9 @@ using System.Threading;
 
 namespace GZipTest
 {
+    /// <summary>
+    ///  Abstract class for Compression data flow
+    /// </summary>
     public abstract class AbstractCompress
     {
         protected Stream InputFileStream { get; set; }

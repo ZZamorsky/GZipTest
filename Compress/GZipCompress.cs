@@ -3,7 +3,9 @@ using System.IO.Compression;
 
 namespace GZipTest
 {
-
+    /// <summary>
+    /// Copy input Block into output using GZipStream
+    /// </summary>
     public class GZipCompress
     {
         public static byte[] CompressByBlocks(byte[] data)

@@ -4,11 +4,18 @@ using System.IO;
 
 namespace GZipTest
 {
+    /// <summary>
+    /// Manage decompression of incoming Blocks
+    /// </summary>
     class Decompress : AbstractCompress
     {
         public Decompress(Stream inputFileStream, Stream outputFileStream) : base(inputFileStream, outputFileStream)
         {
         }
+
+        /// <summary>
+        /// Read input and splitting incoming data to Blocks
+        /// </summary>
         protected override void ReadInputFile()
         {
             try
@@ -39,6 +46,10 @@ namespace GZipTest
             }
         }
 
+        /// <summary>
+        /// Sending Block into GZip for decompression
+        /// </summary>
+        /// <param name="processEventId"></param>
         protected override void Process(int processEventId)
         {
             try
@@ -56,6 +67,9 @@ namespace GZipTest
                 errorMessage = e;
             }
         }
+        /// <summary>
+        /// Writing data into output file
+        /// </summary>
         protected override void WriteOutputFile()
         {
             try

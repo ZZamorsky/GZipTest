@@ -46,7 +46,7 @@ namespace GZipTest
         }
 
         /// <summary>
-        /// Compression of Block
+        /// Sending Block into GZip for compression
         /// </summary>
         /// <param name="processEventId"></param>
         protected override void Process(int processEventId)
