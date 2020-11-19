@@ -33,16 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Compress\AbstractCompress.cs" />
     <Compile Include="Block\Block.cs" />
     <Compile Include="Block\BlockReader.cs" />
     <Compile Include="Block\BlockWriter.cs" />
     <Compile Include="Compress\Compress.cs" />
     <Compile Include="Compress\Decompress.cs" />
-    <Compile Include="Compress\GZipCompression.cs" />
+    <Compile Include="Compress\GZipCompress.cs" />
     <Compile Include="Program.cs" />
   </ItemGroup>
   <ItemGroup>
