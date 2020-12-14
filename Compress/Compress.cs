@@ -10,7 +10,7 @@ namespace GZipTest
     public class Compress : AbstractCompress
     {
         public static int blockSize = 1024 * 1024;
-        public Compress(Stream inputFileStream, Stream outputFileStream) : base(inputFileStream, outputFileStream)
+        public Compress(BufferedStream inputFileStream, BufferedStream outputFileStream) : base(inputFileStream, outputFileStream)
         {
         }
         

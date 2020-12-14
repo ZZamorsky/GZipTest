@@ -9,7 +9,7 @@ namespace GZipTest
     /// </summary>
     class Decompress : AbstractCompress
     {
-        public Decompress(Stream inputFileStream, Stream outputFileStream) : base(inputFileStream, outputFileStream)
+        public Decompress(BufferedStream inputFileStream, BufferedStream outputFileStream) : base(inputFileStream, outputFileStream)
         {
         }
 

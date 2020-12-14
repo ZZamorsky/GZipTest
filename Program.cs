@@ -9,20 +9,20 @@ namespace GZipTest
         {
             if (InputArgsValidator(args))
             {
-                using (var sourceStream = new FileStream(args[1], FileMode.OpenOrCreate, FileAccess.ReadWrite))
-                using (var destinationStream = new FileStream(args[2], FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                using (var sourceStream = new BufferedStream(new FileStream(args[1], FileMode.OpenOrCreate, FileAccess.ReadWrite)))
+                using (var destinationStream = new BufferedStream(new FileStream(args[2], FileMode.OpenOrCreate, FileAccess.ReadWrite)))
                 {
                     AbstractCompress compressor;
                     if (args[0].ToLower() == "compress")
                     {
-                        compressor = new Compress(sourceStream, destinationStream); 
+                        compressor = new Compress(sourceStream, destinationStream);
                         compressor.Run();
                     }
-                    else 
+                    else
                     {
                         compressor = new Decompress(sourceStream, destinationStream);
                         compressor.Run();
-                    }       
+                    }
                 }
             }
             Console.WriteLine("press any key for exit");
@@ -54,13 +54,6 @@ namespace GZipTest
             {
                 Console.WriteLine("Check second argument, wrong the file name: {0} or wrong or missing path: {1}",
                     inputFileInfo.Name, inputFileInfo.DirectoryName);
-                return false;
-            }
-
-            if (!outputFileInfo.Exists)
-            {
-                Console.WriteLine("Check third argument, wrong the file name: {0} or wrong or missing path: {1}",
-                    outputFileInfo.Name, inputFileInfo.DirectoryName);
                 return false;
             }
             return true;

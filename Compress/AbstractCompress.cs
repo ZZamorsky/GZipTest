@@ -10,9 +10,9 @@ namespace GZipTest
     /// </summary>
     public abstract class AbstractCompress
     {
-        protected Stream InputFileStream { get; set; }
+        protected BufferedStream InputFileStream { get; set; }
 
-        protected Stream OutputFileStream { get; set; }
+        protected BufferedStream OutputFileStream { get; set; }
 
         protected BlockReader InputQueue { get; set; }
 
@@ -22,7 +22,7 @@ namespace GZipTest
 
         protected Exception errorMessage = null;
 
-        protected AbstractCompress(Stream inputFileStream, Stream outputFileStream)
+        protected AbstractCompress(BufferedStream inputFileStream, BufferedStream outputFileStream)
         {
             InputFileStream = inputFileStream;
             OutputFileStream = outputFileStream;
@@ -57,11 +57,12 @@ namespace GZipTest
             writingThread.Join();
             if (errorMessage != null)
             {
+                Console.WriteLine("1");
                 Console.WriteLine(errorMessage.Message);
             }
             else
             {
-                Console.WriteLine("Completed");
+                Console.WriteLine("0");
             }
         }
 
